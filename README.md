@@ -51,3 +51,41 @@ can be done using plain C++ and system libraries.
 ---
 
 ## Project structure# HTTPServer-MadewithCPP
+.
+├── main.cpp
+├── server.h
+├── server.cpp
+├── http_parser.h
+├── http_parser.cpp
+├── public/
+│   └── index.html
+
+---
+
+## How it works (high level)
+
+1. The server opens a TCP socket and listens on a port
+2. A browser connects to the server
+3. The raw HTTP request is read from the socket
+4. The request is parsed into method, path, headers, and body
+5. The request is routed to a matching handler
+6. A response is created and serialized
+7. The response is sent back to the browser
+8. The connection is closed
+
+---
+
+## Build and run
+
+Compile the server:
+
+```bash
+g++ -std=c++17 main.cpp server.cpp http_parser.cpp -o http_server -pthread
+
+## Run the Server
+
+./http_server
+
+## Open your browser and visit:
+
+http://localhost:8080
